@@ -8,3 +8,282 @@
     <h2>Hello Github Page</h2>
   </body>
 </html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>我的蓝桥银行</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link rel="stylesheet" type="text/css" href="css/global.css">
+		<link rel="stylesheet" type="text/css" href="css/form.css">
+		<link rel="stylesheet" type="text/css" href="css/dialog.css">
+		<link rel="stylesheet" type="text/css" href="css/biz/uc.css">
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/global.js"></script>
+		<script type="text/javascript" src="js/util.js"></script>
+		<script type="text/javascript" src="js/animation.js"></script>
+		<script type="text/javascript" src="js/dialog.js"></script>
+		<script type="text/javascript">
+			$(function() {
+
+				// 充值
+				$("#deposit").click(function() {
+
+					Dialogx.show({
+						_url: 'dialog_amount.html',
+						_title: '请输入充值金额'
+					});
+				});
+
+				// 提现
+				$("#withdraw").click(function() {
+
+					Dialogx.show({
+						_url: 'dialog_amount.html',
+						_title: '请输入提现金额'
+					});
+				});
+
+				// 转账
+				$("#transfer").click(function() {
+
+					Dialogx.show({
+						_url: 'dialog_transfer.html',
+						_title: '请输入转账信息'
+					});
+				});
+
+				// 申请银行卡
+				$("#applyNewCard").click(function() {
+
+					Dialogx.show({
+						_url: 'dialog_bank.html',
+						_title: '请选择要申请的银行',
+						_callback: function(dialog) {
+							$(".bank-card-x").click(function() {
+								dialog.closeDialog();
+								location.href = "my_card_list.html";
+							});
+						}
+					});
+				});
+
+				// 切换银行卡
+				$("#switchCard").click(function() {
+
+					Dialogx.show({
+						_url: 'dialog_bank.html',
+						_title: '请选择要切换的银行',
+						_callback: function(dialog) {
+							$(".bank-card-x").click(function() {
+								dialog.closeDialog();
+								location.reload();
+							});
+						}
+					});
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="top">
+		</div>
+		<div id="header">
+			<div class="layout">
+				<div id="logo">
+					<a href="uc.html">
+						<img src="images/logo.png" alt="蓝桥" />
+					</a>
+				</div>
+				<div id="nav" class="glb-nav">
+					<ul class="clearfix">
+						<li class="glb-nav-uc current">
+							<a href="uc.html">
+								<span></span>
+							</a>
+						</li>
+						<li class="glb-nav-trade">
+							<a href="trade_list.html">
+								<span></span>
+							</a>
+						</li>
+						<li class="glb-nav-setting">
+							<a href="my_info.html">
+								<span></span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="main uc-main">
+			<div class="layout">
+				<div class="uc-main-box clearfix">
+					<div class="uc-col-main">
+						<div class="uc-ptn-box">
+							<span class="iconfont icon-partner"></span>
+							<span class="ptn-name">工商银行</span>
+							<a id="switchCard" href="javascript:;" class="ptn-switch">切换银行卡</a>
+						</div>
+						<div class="uc-acc-box">
+							<div class="uc-acc-bd">
+								<div class="uc-acc-ht">
+									<h3 class="title">账户余额</h3>
+									<span class="tips">当前银行的虚拟金额!</span>
+								</div>
+								<div class="uc-acc-main">
+									<p class="item-amount">
+										<span class="money">135698.02</span> 元
+									</p>
+									<a class="item-link" href="account_log.html">查看明细</a>
+								</div>
+								<div class="uc-acc-action clearfix">
+									<a id="deposit" href="javascript:;" class="uc-opt-btn uc-trade-btn">
+										<span class="iconfont icon-btn-deposit"></span> 充 值
+									</a>
+									<a id="withdraw" href="javascript:;" class="uc-opt-btn uc-trade-btn">
+										<span class="iconfont icon-btn-withdraw"></span> 提 现
+									</a>
+									<a id="transfer" href="javascript:;" class="uc-opt-btn uc-opt-last uc-trade-btn">
+										<span class="iconfont icon-btn-payment"></span> 转 账
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="uc-col-side uc-col-card">
+						<div class="side-hd">
+							<h3>银行卡</h3>
+						</div>
+						<div class="side-bd">
+							<ul class="uc-col-items">
+								<li>
+									<span class="iconfont icon-menu-bm"></span>
+									<span class="item-txt">已申请银行卡:</span>
+									<span class="item-act"><a href="my_card_list.html">9</a>张</span>
+								</li>
+								<li>
+									<span class="iconfont icon-company"></span>
+									<span class="item-txt">已申请对接银行:</span>
+									<span class="item-act"><a href="my_bank_list.html">4</a>个</span>
+								</li>
+							</ul>
+							<div class="uc-col-entity clearfix">
+								<div class="uc-entity-cl">
+									<p>
+										当前已设置工商银行为默认显示的银行
+										<a href="my_card_list.html">立即修改</a>
+									</p>
+								</div>
+								<div class="uc-entity-cr">
+									<a id="applyNewCard" href="javascript:;" class="uc-opt-btn uc-card-btn">申请银行卡</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="uc-col-side">
+						<div class="side-hd">
+							<h3>下午好： <a href="my_info.html">蓝桥软件学院</a></h3>
+						</div>
+						<div class="side-bd">
+							<div class="side-item">
+								账号： xxxxxxx@qq.com
+							</div>
+							<div class="uc-col-entity">
+								<p>
+									最后登录地点：<span class="uc-entity-tr">吉林省长春市</span>
+								</p>
+								<p>
+									最后登录地址：<span class="uc-entity-tr">222.33.123.344</span>
+								</p>
+								<p>
+									最后登录时间：<span class="uc-entity-tr">2016-08-30 12:34</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="uc-trade-box">
+					<div class="uc-trade-hd">
+						<h3 class="title">
+					<span class="iconfont icon-trade-list"></span>
+					最新交易
+				</h3>
+						<ul class="col-opts col-opts-main">
+							<li>
+								<a href="trade_list.html">所有交易</a>
+							</li>
+							<li>
+								<a href="trade_list.html">充值记录</a>
+							</li>
+							<li>
+								<a href="trade_list.html">提现记录</a>
+							</li>
+							<li class="nb">
+								<a href="trade_list.html">转账记录</a>
+							</li>
+						</ul>
+						<ul class="col-opts col-opts-side">
+							<li class="nb">
+								<a href="trade_list.html">查看所有交易</a>
+							</li>
+						</ul>
+					</div>
+					<div class="uc-trade-bd clearfix">
+						<table class="uc-trade-list">
+							<tbody>
+								<tr>
+									<td class="date">2015-04-21</td>
+									<td class="time">18:21</td>
+									<td class="td-col-type tac">转账</td>
+									<td class="td-col-seq tac">20160917125226001</td>
+									<td class="tac">蓝桥支付</td>
+									<td class="money tar">16320.26</td>
+									<td class="status">交易成功</td>
+								</tr>
+								<tr>
+									<td class="date">2015-04-21</td>
+									<td class="time">18:21</td>
+									<td class="td-col-type tac">充值</td>
+									<td class="td-col-seq tac">20160917125226001</td>
+									<td class="tac">个人</td>
+									<td class="money tar">16320.26</td>
+									<td class="status">交易成功</td>
+								</tr>
+								<tr>
+									<td class="date">2015-04-21</td>
+									<td class="time">18:21</td>
+									<td class="td-col-type tac">提现</td>
+									<td class="td-col-seq tac">20160917125226001</td>
+									<td class="tac">个人</td>
+									<td class="money tar">16320.26</td>
+									<td class="status">交易成功</td>
+								</tr>
+								<tr>
+									<td class="date">2015-04-21</td>
+									<td class="time">18:21</td>
+									<td class="td-col-type tac">转账</td>
+									<td class="td-col-seq tac">20160917125226001</td>
+									<td class="tac">蓝桥支付</td>
+									<td class="money tar">16320.26</td>
+									<td class="status">交易成功</td>
+								</tr>
+								<tr>
+									<td class="date">2015-04-21</td>
+									<td class="time">18:21</td>
+									<td class="td-col-type tac">转账</td>
+									<td class="td-col-seq tac">20160917125226001</td>
+									<td class="tac">个人</td>
+									<td class="money tar">16320.26</td>
+									<td class="status">交易成功</td>
+								</tr>
+								<tr>
+									<td class="date">2015-04-21</td>
+									<td class="time">18:21</td>
+									<td class="td-col-type tac">转账</td>
+									<td class="td-col-seq tac">20160917125226001</td>
+									<td class="tac">蓝桥支付</td>
+									<td class="money tar">16320.26</td>
